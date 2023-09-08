@@ -11,9 +11,9 @@
         http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-<!--    <changeSet author="chdryra" id="tag_version_0_1_0">-->
-<!--        <tagDatabase tag="version_0.1.0" />-->
-<!--    </changeSet>-->
-<!--    <include file="changelog-add-users-table.sql"/>-->
+    <changeSet author="chdryra" id="tag_version_0_1_0">
+        <tagDatabase tag="version_0.1.0" />
+    </changeSet>
+    <include file="changelog-add-users-table.sql"/>
 </databaseChangeLog>
 

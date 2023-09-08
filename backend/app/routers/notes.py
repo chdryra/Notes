@@ -1,35 +1,41 @@
 from fastapi import APIRouter, HTTPException
 
 router = APIRouter(
-    prefix="/items",
-    tags=["items"],
+    prefix="/notes",
+    tags=["notes"],
     responses={404: {"description": "Not found"}},
 )
 
 
-fake_items_db = {"plumbus": {"name": "Plumbus"}, "gun": {"name": "Portal Gun"}}
+fake_notes_db = {
+    "1": {
+        "user": "Riz",
+        "note": "This is note 1"
+    },
+    "2": {
+        "user": "Riz",
+        "note": "This is note 2"
+    }
+}
 
 
 @router.get("/")
-async def read_items():
-    return fake_items_db
+async def read_notes():
+    return fake_notes_db
 
 
-@router.get("{user_id}/{item_id}")
-async def read_item(item_id: str):
-    if item_id not in fake_items_db:
-        raise HTTPException(status_code=404, detail="Item not found")
-    return {"name": fake_items_db[item_id]["name"], "item_id": item_id}
+@router.get("/{note_id}")
+async def read_note(note_id: str):
+    if note_id not in fake_notes_db:
+        raise HTTPException(status_code=404, detail="note not found")
+    return fake_notes_db[note_id]
 
 
-@router.put(
-    "{user_id}/{item_id}",
-    tags=["custom"],
-    responses={403: {"description": "Operation forbidden"}},
+@router.put("/{note_id}",
+            tags=["custom"],
+            responses={403: {"description": "Operation forbidden"}},
 )
-async def update_item(item_id: str):
-    if item_id != "plumbus":
-        raise HTTPException(
-            status_code=403, detail="You can only update the item: plumbus"
-        )
-    return {"item_id": item_id, "name": "The great Plumbus"}
+async def update_note(note_id: str):
+    raise HTTPException(
+        status_code=403, detail="You cannot update yet"
+    )
