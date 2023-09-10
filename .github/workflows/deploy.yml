@@ -1,7 +1,7 @@
 name: deploy
 run-name: Deploy Notes Backend
 concurrency:
-  group: ${{ github.head_ref }}
+  group: ${{ github.ref }}
   cancel-in-progress: true
 on:
   workflow_dispatch:  
