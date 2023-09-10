@@ -1,4 +1,4 @@
-name: liquibase-update
+name: deploy
 run-name: ${{ github.actor }} is learning GitHub Actions for liquibase updates
 on:
   workflow_dispatch:  
