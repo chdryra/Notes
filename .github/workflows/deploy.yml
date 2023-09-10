@@ -42,8 +42,6 @@ jobs:
     steps:
     - uses: 'actions/checkout@v3'
 
-    - run: cd backend
-
     - id: 'auth'
       uses: 'google-github-actions/auth@v1'
       with:
@@ -56,4 +54,4 @@ jobs:
         version: '>= 363.0.0'
 
     - name: 'Build and deploy'
-      run: gcloud builds submit --region="europe-west1" --config backend/cloudbuild.yaml .
+      run: gcloud builds submit --region="europe-west1" --config cloudbuild.yaml .
