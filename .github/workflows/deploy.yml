@@ -54,4 +54,6 @@ jobs:
         version: '>= 363.0.0'
 
     - name: 'Build and deploy'
-      run: 'gcloud builds submit --region="europe-west1" --config cloudbuild.yaml .'
+      run: |
+        cd backend
+        'gcloud builds submit --region="europe-west1" --config cloudbuild.yaml .'
