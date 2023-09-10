@@ -45,7 +45,7 @@ jobs:
     steps:
     - uses: 'actions/checkout@v3'
 
-    - id: Authenticate GCloud
+    - name: Authenticate GCloud
       uses: google-github-actions/auth@v1
       with:
         workload_identity_provider: projects/81869977343/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider
