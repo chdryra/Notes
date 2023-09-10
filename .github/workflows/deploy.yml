@@ -33,7 +33,11 @@ jobs:
         liquibase update --username=${{ secrets.DB_USERNAME }} --password=${{ secrets.DB_PASSWORD }}
 
   deploy:
+    needs: postgres
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
 
     steps:
     - uses: 'actions/checkout@v3'
