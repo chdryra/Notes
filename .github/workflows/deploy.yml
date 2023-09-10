@@ -1,13 +1,13 @@
 name: deploy
-run-name: ${{ github.actor }} is learning GitHub Actions for liquibase updates
+run-name: Deploy Notes Backend
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
 on:
   workflow_dispatch:  
   push:
     branches:
       - main
-concurrency:
-  group: ${{ github.head_ref }}
-  cancel-in-progress: true
 
 jobs:
   postgres:
