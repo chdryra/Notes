@@ -1,7 +1,12 @@
+import sys
+print(sys.path)
+
 import argparse
 import uvicorn
 
 from fastapi import FastAPI
+
+from backend.app.sql.sqlutils import SqlExecuter
 from routers import notes, users
 
 
@@ -9,9 +14,14 @@ app = FastAPI()
 app.include_router(users.router)
 app.include_router(notes.router)
 
+executer = SqlExecuter("postgresql://postgres:kulgasimsim@127.0.0.1:5432/notes")
 
 @app.get("/")
 async def root():
+    api = f"/ GET"
+    executer.insert(f"""
+       INSERT into api_calls(api) values('{api}') 
+       """)
     return {"message": "Hello Bigger Applications!"}
 
 

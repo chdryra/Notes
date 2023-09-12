@@ -14,6 +14,6 @@
     <changeSet author="chdryra" id="tag_version_0_1_0">
         <tagDatabase tag="version_0.1.0" />
     </changeSet>
-    <include file="changelog-add-users-table.sql"/>
+    <include file="changelog-add-api-calls-table.sql"/>
 </databaseChangeLog>
 

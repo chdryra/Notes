@@ -1,34 +1,31 @@
 from fastapi import APIRouter, HTTPException
 
+from backend.app.sql.sqlutils import SqlExecuter
+
+PREFIX = "/notes"
+
 router = APIRouter(
-    prefix="/notes",
+    prefix=PREFIX,
     tags=["notes"],
     responses={404: {"description": "Not found"}},
 )
 
-
-fake_notes_db = {
-    "1": {
-        "user": "Riz",
-        "note": "This is note 1"
-    },
-    "2": {
-        "user": "Riz",
-        "note": "This is note 2"
-    }
-}
-
+executer = SqlExecuter("postgresql://postgres:kulgasimsim@127.0.0.1:5432/notes")
 
 @router.get("/")
 async def read_notes():
-    return fake_notes_db
+    api = f"{PREFIX} GET"
+    executer.insert(f"""
+    INSERT into api_calls(api) values("{api}") 
+    """)
 
 
 @router.get("/{note_id}")
 async def read_note(note_id: str):
-    if note_id not in fake_notes_db:
-        raise HTTPException(status_code=404, detail="note not found")
-    return fake_notes_db[note_id]
+    api = f"{PREFIX}/{note_id} GET"
+    executer.insert(f"""
+    INSERT into api_calls(api) values("{api}") 
+    """)
 
 
 @router.put("/{note_id}",
@@ -36,6 +33,7 @@ async def read_note(note_id: str):
             responses={403: {"description": "Operation forbidden"}},
 )
 async def update_note(note_id: str):
-    raise HTTPException(
-        status_code=403, detail="You cannot update yet"
-    )
+    api = f"{PREFIX}/{note_id} POST"
+    executer.insert(f"""
+    INSERT into api_calls(api) values("{api}") 
+    """)
