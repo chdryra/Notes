@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 
-from backend.app.sql.sqlutils import SqlExecuter
+from sql.sqlutils import PostgresDb
 
 PREFIX = "/notes"
 
@@ -10,7 +10,7 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-executer = SqlExecuter("postgresql://postgres:kulgasimsim@127.0.0.1:5432/notes")
+executer = PostgresDb("postgresql://postgres:kulgasimsim@127.0.0.1:5432/notes")
 
 @router.get("/")
 async def read_notes():
